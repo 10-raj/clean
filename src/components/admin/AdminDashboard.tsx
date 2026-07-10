@@ -14,6 +14,7 @@ export function AdminDashboard() {
     totalGallery: 0,
     totalSponsors: 0,
     totalCampaigns: 0,
+    totalTeam: 0,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +47,7 @@ export function AdminDashboard() {
     { title: 'Gallery', value: stats.totalGallery, icon: ImageIcon, color: 'from-sky-500 to-blue-600', link: '/admin/gallery', desc: 'Manage images' },
     { title: 'Sponsors', value: stats.totalSponsors, icon: Handshake, color: 'from-amber-500 to-orange-600', link: '/admin/sponsors', desc: 'Manage partners' },
     { title: 'Campaigns', value: stats.totalCampaigns, icon: Megaphone, color: 'from-rose-500 to-pink-600', link: '/admin/campaigns', desc: 'Manage events' },
+    { title: 'Team', value: stats.totalTeam, icon: Users, color: 'from-teal-500 to-cyan-600', link: '/admin/team', desc: 'Manage members' },
   ];
 
   if (loading) {

@@ -27,7 +27,7 @@ export async function checkIsAdmin(): Promise<boolean> {
 // ============================================================
 
 export async function getAdminStats() {
-  const [messagesResult, donationsResult, bookingsResult, hikesResult, galleryResult, sponsorsResult, campaignsResult] = await Promise.all([
+  const [messagesResult, donationsResult, bookingsResult, hikesResult, galleryResult, sponsorsResult, campaignsResult, teamResult] = await Promise.all([
     supabase.from('contact_messages').select('id', { count: 'exact', head: true }),
     supabase.from('donations').select('amount', { count: 'exact' }),
     supabase.from('trek_bookings').select('id', { count: 'exact', head: true }),
@@ -35,6 +35,7 @@ export async function getAdminStats() {
     supabase.from('gallery').select('id', { count: 'exact', head: true }),
     supabase.from('sponsors').select('id', { count: 'exact', head: true }),
     supabase.from('donation_campaigns').select('id', { count: 'exact', head: true }),
+    supabase.from('team_members').select('id', { count: 'exact', head: true }),
   ]);
 
   const unreadMessages = await supabase
@@ -51,6 +52,7 @@ export async function getAdminStats() {
     totalGallery: galleryResult.count || 0,
     totalSponsors: sponsorsResult.count || 0,
     totalCampaigns: campaignsResult.count || 0,
+    totalTeam: teamResult.count || 0,
   };
 }
 
